@@ -1,0 +1,45 @@
+{% extends "deltamaster.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+--ELIMINAR--
+
+<form action="{% url 'appdelta:editarclientes' form.instance.document %}" method="post">	
+ 		{% csrf_token %}
+ 	
+		{% for error in field.errors %}
+			<li>{{ error }}</li>
+		{% endfor %}
+		
+	<div class="container-fluid col-md-4 col-md-offset-3">
+		<div class="jumbotron">
+			<h2 align="center"><b>Abono Clientes</b></h2>
+			
+		</div>
+		
+		<div class="container">
+			<a href="{% url 'appdelta:index' %}"><h4 align="center"><b>Volver</b></h4></a><br />
+		</div>
+		
+		{% for field in form %}
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+				<label>{{ field.label }}</label>
+					{{ field }}
+				&nbsp;<div>{{ field.document }}</div>
+				</div>
+			</div>
+		{% endfor %}
+		<br/>
+		<div class="container">
+			<div class="col-md-6 col-md-offset-3" align="center">
+				<input type="submit" name="saveabono" id="saveabono" value="Guardar" class="btn btn-primary btn-lg btn-block">
+			</div>+
+		</div>
+		
+	</div>
+		
+	
+</form>
+
+{% endblock %}

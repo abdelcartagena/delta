@@ -1,0 +1,121 @@
+{% extends "deltamaster.html" %}
+{% load widget_tweaks %}
+{% block content %}	
+	
+
+<form action="{% url 'appdelta:index' %}">	
+
+<div class="container">
+
+	<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 align="center">Buscar clientes</h4>		
+		</div>		
+		<br/>	
+		<div class="panel-body">
+		
+		<form action="." method="GET">
+		    <label for="q"></label>
+		    <input class="form-control" placeholder="Busqueda" type="text" name="q" value="{{ query|escape }}">
+		    <br/>
+		    <input type="submit" name="button" id="button" value="Buscar" class="btn btn-primary btn-block">
+	  	</form>
+	  	
+	  		{% if query %}
+    			<h4>Resultados para: {{ query|escape }}</h4>
+    		
+		
+			{% if results %}
+			
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped ">
+					<thead>
+						<tr>
+							<th>editar</th>
+							<th>Nombre</th>
+							<th>Documento</th>
+							<th>Negocio</th>
+							<th>Dirección</th>
+							<th>Telefono</th>							
+						</tr>
+					</thead>
+					<tbody>
+						{% for resl in results %}
+							<tr>			
+								<td align="center">
+									<div>
+										<a href="{% url 'appdelta:editarclientes' resl.document %}">
+											<button class="btn btn-default" type="button" value="Editar">
+												 <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+												 </span>
+											</button>
+										</a>
+									</div>
+								</td>			
+								<td>{{ resl.name }}</td>
+								<td>{{ resl.document }}</td>
+								<td>{{ resl.trade }}</td>
+								<td>{{ resl.Address }}</td>
+								<td>{{ resl.phone }}</td>												
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				
+				{% endif %}
+				{% endif %}
+				
+			</div>
+		</div>		
+	</div>	
+</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 align="center">Editar clientes</h4>		
+		</div>		
+		<br/>
+		<div class="panel-body">
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped ">
+					<thead>
+						<tr>
+							<th>editar</th>
+							<th>Nombre</th>
+							<th>Documento</th>
+							<th>Negocio</th>
+							<th>Dirección</th>
+							<th>Telefono</th>							
+						</tr>
+					</thead>
+					<tbody>
+						{% for datos in Datos_cliente %}
+							<tr>
+								<td align="center">
+									<div>
+										<a href="{% url 'appdelta:editarclientes' datos.document %}">
+											<button class="btn btn-default" type="button" value="Editar">
+												 <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+												 </span>
+											</button>
+										</a>
+									</div>
+								</td>							
+								<td>{{ datos.name }}</td>
+								<td>{{ datos.document }}</td>
+								<td>{{ datos.Address }}</td>
+								<td>{{ datos.trade }}</td>
+								<td>{{ datos.phone }}</td>																					
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
+</div>
+
+</form>
+
+{% endblock %}

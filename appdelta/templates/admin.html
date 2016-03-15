@@ -1,0 +1,145 @@
+{% extends "deltamaster.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+<form action="{% url 'appdelta:admin' %}">
+
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 align="center">Buscar clientes</h4>		
+		</div>		
+		<br/>	
+		<div class="panel-body">
+		
+		<form action="." method="GET">
+		    <label for="q"></label>
+		    <input class="form-control" placeholder="Busqueda" type="text" name="q" value="{{ query|escape }}">
+		    <br/>
+		    <input type="submit" name="button" id="button" value="Buscar" class="btn btn-primary btn-block">
+	  	</form>
+	  	
+	  		{% if query %}
+    			<h4>Resultados para: {{ query|escape }}</h4>
+    		
+		
+			{% if results %}
+			
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped ">
+					<thead>
+						<tr>
+							<th>Abonar</th>
+							<th>Ver</th>
+							<th>Nombre</th>
+							<th>Documento</th>
+							<th>Negocio</th>
+							<th>Total abonado</th>
+							<th>Total a pagar</th>
+							<th>Fecha del prestamo</th>							
+						</tr>
+					</thead>
+					<tbody>
+						{% for resl in results %}
+							<tr>			
+								<td align="center">
+									<div>
+										<a href="{% url 'appdelta:admincliente' resl.document %}">
+											<button class="btn btn-default" type="button" value="Editar">
+												 <span class="glyphicon glyphicon-book" aria-hidden="true">
+												 </span>
+											</button>
+										</a>
+									</div>
+								</td>
+								<td align="center">
+									<div>
+										<a href="{% url 'appdelta:verabonos' resl.document %}">
+											<button class="btn btn-default" type="button" value="Editar">
+												 <span class="glyphicon glyphicon-book" aria-hidden="true">
+												 </span>
+											</button>
+										</a>
+									</div>
+								</td>			
+								<td>{{ resl.name }}</td>
+								<td>{{ resl.document }}</td>
+								<td>{{ resl.trade }}</td>
+								<td>{{ resl.total_abonado }}</td>
+								<td>{{ resl.total_payment }}</td>								
+								<td>{{ resl.date }}</td>					
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				
+				{% endif %}
+				{% endif %}
+				
+			</div>
+		</div>		
+	</div>	
+</div>
+
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 align="center">Tabla clientes</h4>		
+		</div>		
+		<div class="panel-body">
+			
+		<div class="table-responsive">
+				<table class="table table-bordered table-striped ">
+					<thead>
+						<tr>
+							<th>Abonar</th>
+							<th>Ver</th>
+							<th>Nombre</th>
+							<th>Documento</th>
+							<th>Negocio</th>
+							<th>Total abonado</th>
+							<th>Total a pagar</th>
+							<th>Fecha del prestamo</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for datos in Datos_cliente %}
+							<tr>
+								<td align="center">
+									<div>
+										<a href="{% url 'appdelta:admincliente' datos.document %}">
+											<button class="btn btn-default" type="button" value="Editar">
+												 <span class="glyphicon glyphicon-book" aria-hidden="true">
+												 </span>
+											</button>
+										</a>
+									</div>
+								</td>
+								<td align="center">
+									<div>
+										<a href="{% url 'appdelta:verabonos' datos.document %}">
+											<button class="btn btn-default" type="button" value="Editar">
+												 <span class="glyphicon glyphicon-book" aria-hidden="true">
+												 </span>
+											</button>
+										</a>
+									</div>
+								</td>					
+								<td>{{ datos.name }}</td>
+								<td>{{ datos.document }}</td>
+								<td>{{ datos.trade }}</td>
+								<td>{{ datos.total_abonado }}</td>
+								<td>{{ datos.total_payment }}</td>
+								<td>{{ datos.date }}</td>														
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>			
+			</div>	
+		</div>
+	</div>
+</div>
+
+</form>
+
+{% endblock %}

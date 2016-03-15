@@ -1,0 +1,49 @@
+{% extends "deltamaster.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="container">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4 align="center">Administrar clientes</h4>		
+		</div>
+		
+		<br/>
+		
+	
+	<div class="panel-body">	
+		<div class="container table-responsive">
+			<table class="table table-bordered table-striped ">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Documento</th>
+						<th>Direccion</th>
+						<th>Administrar</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for datos in Datos_cliente %}
+					<tr>
+						
+							<td>{{ datos.name }}</td>
+							<td>{{ datos.document }}</td>
+							<td>{{ datos.Address }}</td>
+							<td align="center">
+								<div>
+									[<a href="{% url 'appdelta:admincliente' datos.document %}">Agregar</a>] <br /><br />
+								</div>
+							</td>
+						
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+		
+	</div>
+	
+</div>
+
+{% endblock %}

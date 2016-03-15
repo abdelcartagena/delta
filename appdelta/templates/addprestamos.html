@@ -1,0 +1,23 @@
+{% extends "deltamaster.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+--ELIMINAR--
+
+<form action="{% url 'appdelta:addprestamos' datos.document %}" method="post" >{% csrf_token %}
+	{% csrf_token %}
+	{% for field in form %}
+		<div>
+		
+			<label>hola esto si funciona</label>
+
+			<label>{{ field.label }}</label>
+			<div>{{ field }}</div>			
+			<div>{{ field.errors }}</div>
+		</div>
+	{% endfor %}
+	<br />	
+	<input type="submit" name="savepres" id="savepres" value="Guardar" class="btn btn-primary btn-lg btn-block">
+</form>
+
+{% endblock %}

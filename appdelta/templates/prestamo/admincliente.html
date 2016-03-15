@@ -1,0 +1,19 @@
+{% extends "deltamaster.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+<form action="{% url 'appdelta:admincliente' form.instance.document %}" method="post">{% csrf_token %}
+
+	{% csrf_token %}
+	{% for field in form %}
+		<div>
+			<label>{{ field.label }}</label>
+			<div>{{ field }}</div>			
+			<div>{{ field.errors }}</div>
+		</div>
+	{% endfor %}
+	<br />	
+	<input type="submit" name="savepres" id="savepres" value="Guardar" class="btn btn-primary btn-lg btn-block" />
+</form>
+
+{% endblock %}

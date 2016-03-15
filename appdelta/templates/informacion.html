@@ -1,0 +1,72 @@
+{% extends "deltamaster.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+<form method="" action="{% url 'appdelta:informacion' %}">
+
+	<form action="." method="GET">
+		<div class="container">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 align="center"><b>Información Diaria</b></h4>		
+				</div>
+				<br/>
+				<div class="panel-body">		
+					<div class="row">					    
+					    <div class="col-lg-3">
+					    	<label>Fecha</label>
+					    	<input class="form-control" placeholder="aaaa/mm/dd" type="text" name="q" >
+					    </div>
+					    <br/>
+					    <div class="col-lg-3">
+					    	<input type="submit" name="busq" id="busq" value="Buscar" class="btn btn-primary btn-block">
+					    </div>
+				    </div>
+			    </div>			    
+			    <div class="panel-body">
+			    	<div class="col-sm-6">
+			    		<label>Fecha:</label></label>&nbsp;&nbsp;<span>{{ fecha }}</span>
+			    	</div>
+			    	<div class="col-sm-6">
+			    		<label>Recolectado:</label></label>&nbsp;&nbsp;<span>{{ abono_dia }} <b>S/</b></span>
+			    	</div>
+			    </div>
+			    <br/>
+			</div>
+		</div>
+	</form>
+	
+	<br/>
+
+	<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 align="center"><b>Información General</b></h4>		
+			</div>
+			<br/>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-6">
+						&nbsp;&nbsp;<label>Total prestado más porcentaje:</label>&nbsp;&nbsp;<span>{{ prestamointe }} <b>S/</b></span>
+					</div>
+					<div class="col-sm-6">
+						&nbsp;&nbsp;<label>Total deuda a fabor:</label>&nbsp;&nbsp;<span>{{ prestado }} <b>S/</b></span>
+					</div>
+					<div class="col-sm-6">
+						&nbsp;&nbsp;<label>Total recolectado:</label>&nbsp;&nbsp;<span>{{ abonado }} <b>S/</b></span>
+					</div>						
+					<div class="col-sm-6">
+						&nbsp;&nbsp;<label>Total clientes:</label>&nbsp;&nbsp;<span>{{ usuarios }}</span>
+					</div>									
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<br/>
+	
+	
+	
+</form>
+
+{% endblock %}

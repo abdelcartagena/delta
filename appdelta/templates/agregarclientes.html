@@ -1,0 +1,87 @@
+{% extends "deltamaster.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+<form method="post" action="{% url 'appdelta:agregarclientes' %}">{% csrf_token %}
+
+		{% csrf_token %}
+ 		
+		{% for error in field.errors %}
+			<li>{{ error }}</li>
+		{% endfor %}
+		
+	<div class="container-fluid col-md-6 col-md-offset-3">
+		<div class="container">
+			<a href="{% url 'appdelta:inicio' %}"><h5 align="left"><b>Atras</b></h5></a><br />
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 align="center"><b>Agregar Cliente</b></h4>					
+			</div>
+			
+			</br>
+			
+			<div class="row">
+				<div class="col-sm-1"></div>
+		    	{% include "register/field.html" with field=form.name row_size=5 %}&nbsp;
+		    	{% include "register/field.html" with field=form.document row_size=5 %}	     				
+		    </div>
+		    
+		    <br/>
+		    
+		    <div class="row">
+				<div class="col-sm-1"></div>
+		    	{% include "register/field.html" with field=form.Address row_size=5 %}&nbsp;
+		    	{% include "register/field.html" with field=form.trade row_size=5 %}	 				
+		    </div>
+		    
+		    <br/>
+		    
+		    <div class="row">
+				<div class="col-sm-1"></div>
+		    	{% include "register/field.html" with field=form.loan row_size=5 %}&nbsp;
+		    	{% include "register/field.html" with field=form.payment_days row_size=5 %}	 				
+		    </div>
+		    
+		    <br/>
+		    
+		    <div class="row">
+				<div class="col-sm-1"></div>
+				{% include "register/field.html" with field=form.phone row_size=5 %}&nbsp;
+				{% include "register/field.html" with field=form.dateprestamo row_size=5 %}			
+			</div>	   
+				    
+			<br/>
+			
+		    <div class=row>
+			    <div class="container">				    	
+			    	<div class="input-group col-md-4 col-md-offset-1"><label>Porcentaje</label></div>
+				    <div class="input-group col-md-4 col-md-offset-1" >
+				    	{{ form.percent}}			      
+				    	<div class="input-group-addon">%</div>
+				    </div>
+				    
+				    <br/>	 	
+				    				    	 
+				</div>
+			</div>
+			
+			<br/>
+			<br/>
+		    
+		    <div class="container">
+			    <div class="col-md-6 col-md-offset-3" align="center">	
+			    	<input type="submit" name="save" id="save" value="Guardar" class="btn btn-primary btn-lg btn-block">
+			    </div>	
+		    </div>
+		    
+		    <br/>
+		    <br/>
+		    
+		</div>
+			
+	</div>
+</form>
+
+
+{% endblock %}

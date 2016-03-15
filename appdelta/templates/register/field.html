@@ -1,0 +1,11 @@
+{% load widget_tweaks %}
+<div class="col-sm-{{ row_size }}">
+ 	
+ 	<label class="control-label" align="center">{{ field.label }} {% if field.field.required %}{% endif %}</label>
+	<center>{{ field|add_class:"form-control text-center"}}</center>
+	<div>
+	{% for error in field.errors %}
+ 		<li>{{ error }}</li>
+	{% endfor %}
+ 	</div>
+</div>

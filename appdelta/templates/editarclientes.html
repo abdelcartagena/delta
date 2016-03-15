@@ -1,0 +1,46 @@
+{% extends "deltamaster.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+ 	
+<form action="{% url 'appdelta:editarclientes' form.instance.document %}" method="post">	
+ 		{% csrf_token %}
+ 	
+		{% for error in field.errors %}
+			<li>{{ error }}</li>
+		{% endfor %}
+	<div class="col-md-6 col-md-offset-3">
+		<div class="container">
+			<a href="{% url 'appdelta:index' %}"><h5 align="left"><b>Atras</b></h5></a><br />
+		</div>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 align="center"><b>Editar Clientes</b></h4>					
+			</div>	
+		</br>
+		{% for field in form %}
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+				<label>{{ field.label }}</label>
+					{{ field }}
+				&nbsp;<div>{{ field.document }}</div>
+				</div>
+			</div>
+		{% endfor %}
+		<br/>
+		<div class="">
+			<div class="col-md-8 col-md-offset-2">
+				<input type="submit" name="saveedit" id="saveedit" value="Guardar" class="btn btn-primary btn-block">
+			</div>
+			</br>
+		</div>
+		
+	</div>
+	</div>
+		
+	
+</form>
+
+
+{% endblock %}
